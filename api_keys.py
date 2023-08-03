@@ -1,2 +1,2 @@
 # Priceline API Key
-priceline_api_key = 'a437ec7043msh5f384e77bda7282p18b39djsn437084e70771'
+priceline_api_key = '1f677433c7mshbe31b60fd7cf35ep176e16jsndee72b793c83'
