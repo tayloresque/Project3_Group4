@@ -1,0 +1,4 @@
+# Priceline API Key
+priceline_api_key = 'f440053688msh2ff836a865a7805p10f3e9jsnc097e6858fb4'
+
+opentrip_api_key = "5ae2e3f221c38a28845f05b6c989f67e27a01883dd9ab4e5bf4150c4"
