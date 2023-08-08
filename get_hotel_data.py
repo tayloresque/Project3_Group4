@@ -5,7 +5,7 @@ import json
 from pymongo import MongoClient
 
 ## Import the Priceline API key
-from api_keys import priceline_api_key
+priceline_api_key = "3e6b744580msh4923cc9e6404566p18d83fjsnf66d6bfce325"
 
 # List of cities
 city_list = [
@@ -25,7 +25,7 @@ city_list = [
     'Los Angeles, CA',
     'San Francisco, CA',
     'San Luis Obispo, CA',
-    ',Carmel-by-the-Sea, CA',
+    'Carmel-by-the-Sea, CA',
     'Laguna Beach, CA',
     'Morro Bay, CA',
     'San Clemente, CA',
@@ -39,7 +39,9 @@ city_list = [
     'Lake Tahoe, CA',
     'Eureka, CA',
     'Bakersfield, CA',
-    'Oceanside, CA'
+    'Oceanside, CA',
+    'Arnold, CA',
+    'Sonoma, CA'
     
 ]
 
@@ -76,7 +78,7 @@ for city in city_list:
                 
                 break  # Exit the while loop if data is successfully retrieved
             else:
-                pass
+                print(f"!!!!!!!!!!!!!!!!!!!!!Unexpected data structure for {city}: {json_data}") 
         else:
             break  # Exit the while loop on error
 
