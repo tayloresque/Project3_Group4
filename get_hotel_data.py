@@ -9,21 +9,38 @@ from api_keys import priceline_api_key
 
 # List of cities
 city_list = [
-    'San Jose',
-    'Santa Cruz',
-    'Newport Beach',
-    'Napa',
-    'Santa Monica',
-    'Long Beach',
-    'Fresno',
-    'Monterey',
-    'Santa Barbara',
-    'Palm Springs',
-    'Sacramento',
-    'Anaheim',
-    'San Diego',
-    'Los Angeles',
-    'San Francisco',
+    'San Jose, CA',
+    'Santa Cruz, CA',
+    'Newport Beach, CA',
+    'Napa, CA',
+    'Santa Monica, CA',
+    'Long Beach, CA',
+    'Fresno, CA',
+    'Monterey, CA',
+    'Santa Barbara, CA',
+    'Palm Springs, CA',
+    'Sacramento, CA',
+    'Anaheim, CA',
+    'San Diego, CA',
+    'Los Angeles, CA',
+    'San Francisco, CA',
+    'San Luis Obispo, CA',
+    ',Carmel-by-the-Sea, CA',
+    'Laguna Beach, CA',
+    'Morro Bay, CA',
+    'San Clemente, CA',
+    'Catalina Island, CA',
+    'Pismo Beach, CA',
+    'Big Bear Lake, CA',
+    'Pasadena, CA',
+    'Carlsbad, CA',
+    'Yosemite, CA',
+    'Huntington Beach, CA',
+    'Lake Tahoe, CA',
+    'Eureka, CA',
+    'Bakersfield, CA',
+    'Oceanside, CA'
+    
 ]
 
 # Initialize an empty list to store DataFrames
@@ -96,6 +113,8 @@ column_to_check = 'type'   # Replace with the column name
 filtered_df_type = filtered_df_country[filtered_df_country[column_to_check] == values_to_keep]
 
 hotel_data_select = filtered_df_type[column_to_select]
+
+hotel_data_select = hotel_data_select.drop_duplicates(subset=['id'], keep='first')
 
 test = hotel_data_select.copy()
 
