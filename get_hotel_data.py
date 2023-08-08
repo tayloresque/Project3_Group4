@@ -3,9 +3,10 @@ import requests
 import pandas as pd
 import json
 from pymongo import MongoClient
+import time
 
 ## Import the Priceline API key
-priceline_api_key = "3e6b744580msh4923cc9e6404566p18d83fjsnf66d6bfce325"
+priceline_api_key = "f7a065513cmsh034784ac93341f1p11ed1djsnfa5aed7b2d38"
 
 # List of cities
 city_list = [
@@ -39,9 +40,8 @@ city_list = [
     'Lake Tahoe, CA',
     'Eureka, CA',
     'Bakersfield, CA',
-    'Oceanside, CA',
-    'Arnold, CA',
-    'Sonoma, CA'
+    'Oceanside, CA'
+    
     
 ]
 
@@ -60,6 +60,7 @@ for city in city_list:
     }
     
     while True:
+        time.sleep(2)  
         response = requests.get(url, headers=headers, params=querystring)
 
         if response.status_code == 200:
@@ -123,6 +124,8 @@ test = hotel_data_select.copy()
 test["price"] = ""
 
 for index, row in test.iterrows():
+
+    time.sleep(2)    
     
     url = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/booking-details"
     

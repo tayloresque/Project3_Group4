@@ -50,7 +50,7 @@ d3.json('hotel_price.json').then(function(data) {
                 Plotly.newPlot("bubble", [trace1], layout)
               });
           };
-    init ();
+
         
           
           

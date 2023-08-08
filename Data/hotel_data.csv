@@ -1,9 +1,2 @@
 name,id,city,state,lat,lon,score,rank,rank2,globalScore,country,price
-Surf City Inn & Suites,42212,Santa Cruz, California,36.96986,-122.01988,400925.7,11.810301,97.8209228515625,30.0,US,279.00
-Silverado Golf Course,147643504,Napa, California,38.35994,-122.26403,400981.97,0.5,97.81620025634766,30.0,US,719.98
-Inn On Randolph,46299306,Napa, California,38.292615,-122.287015,400981.97,0.5,97.81620025634766,30.0,US,470.35
-Quality Inn Near Six Flags Discovery Kingdom-Napa Valley,43633,Vallejo, California,38.13557,-122.2136,375053.16,11.810301,74.03386688232422,30.0,US,77.85
-Embassy Suites BY Hilton Hotel Napa Valley,39373,Napa, California,38.2977200000001,-122.30032,368345.38,13.47378,66.86486053466797,30.0,US,339.00
-Hotel Indigo Napa Valley,40664,Napa, California,38.3349400000001,-122.32164,367719.38,12.018117,66.37753295898438,30.0,US,300.05
-Doubletree BY Hilton Hotel & SPA Napa Valley - American Canyon,10114304,American Canyon, California,38.172821,-122.253545,365207.97,12.049547,65.99331665039062,30.0,US,152.15
-Hilton Santa Monica Hotel & Suites,39053,Santa Monica, California,34.01194,-118.489926,369760.2,12.017865,67.94300842285156,30.0,US,409.00
+Surf City Inn & Suites,42212,Santa Cruz, California,36.96986,-122.01988,400927.84,11.810301,97.8209228515625,30.0,US,279.00
