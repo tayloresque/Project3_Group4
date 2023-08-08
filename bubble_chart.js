@@ -1,57 +1,53 @@
-// Fetch data from the API endpoint using d3.json()
+function init(){
+    let selector = d3.select("destinationSelect");
+        d3.json("hotel_price.json").then(function(data) {
+            console.log(data)
+        //let names = data.price;
 
-//const url = 'C:\Users\calei\OneDrive\Desktop\BC\Projects\Project3_Group4\Data\hotel_price.csv'        
-    
-d3.json('hotel_price.json').then(function(data) {
-            // Use the fetched data for visualization
-    console.log(data); // Just an example, you can customize the visualization here
-    });
-   
-        function createScatter(bubble) {
-          
-            
-            d3.json('hotel_price.json').then((data) => {
-                
-                
-                let hotelInfo = data.name;
-          
-                
-                let value = hotelInfo.filter(result => result.id == bubble);
-          
-                 
-                let valueData = value[0];
-          
-                
-                let price = valueData.price;
-                let score_label = valueData.score;
-                let city = valueData.city;
-          
-                
-                console.log(price,score_label,city);
-                
-                
-                let trace1 = {
-                    x: price,
-                    y: city,
-                    text: score_label,
-                    mode: "markers",
-                    marker: {
-                        size: price,
-                        color: city,
-                        colorscale: "Earth"
-                    }
-                };
-                
-                let layout = {
-                  title: "Hotel Price",
-                };
-          
-                  
-                Plotly.newPlot("bubble", [trace1], layout)
-              });
-          };
+        //for(let i = 0; i < names.length; i++){
+        // selector.append("option"). text(names[i]).property("value", namesames[i]);
+       // }
 
+        //let firstSample = names[0];
+      //  buildCharts(firstSample);
         
-          
-          
-         
+    })  
+
+   
+}
+
+//init();
+
+    function buildCharts(price) {
+        d3.json("hotel_price.json").then (function(data) {
+            let priceData = data.price;
+            let resultArray = priceData.filter((sampleDictionary) => sampleDictionary.name == price);
+            let result = resultArray[0];
+
+            let city = result.city;
+            let name = result.name;
+            let priceValues = result.price;
+
+            let bubbleLayout = {
+            title: "Hotel Price",
+                margin: { t: 0}, 
+                hovermode: "closest",
+                xaxis: { title: "Hotel Price"},
+
+            };
+            let bubbleData = [
+                {
+                x: priceValues,
+                y: city,
+                text: name,
+                mode: "markers",
+                marker: {
+                    size: priceValues,
+                    color: city,
+                    colorscale: "Earth"
+                }
+            }
+        ]
+        Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
+    })};
+init();
