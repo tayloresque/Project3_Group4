@@ -1,18 +1,27 @@
 # Import dependencies
 from flask import Flask, jsonify
-import pymongo
+from pymongo import MongoClient
 # Import main file (.py) here
 
 #################################################
 # Flask Setup
 #################################################
 app = Flask(__name__)
-conn = 'mongodb://localhost:27017'
-client = pymongo.MongoClient(conn)
+
+# Establish MongoDB connection
+mongo_client = MongoClient("localhost", 27017)
+db = mongo_client["hotel_db"]
+collection = db["hotels"]
 
 #################################################
 # Flask Routes
 #################################################
+@app.route("/get_hotel_data")
+def get_hotel_data():
+    # Retrieve data from MongoDB
+    data = list(collection.find({}, {"_id": 0}))
+    return jsonify(data)
+
 @app.route("/")
 def mainpage():
     return
