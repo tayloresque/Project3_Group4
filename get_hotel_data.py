@@ -144,12 +144,25 @@ for index, row in test.iterrows():
         test.loc[index, "price"] = response["rooms"][0]["displayableRates"][0]["displayPrice"]
     except (KeyError, IndexError):
         test.loc[index, "price"] = "No price found"
+        
+    try:
+        test.loc[index, "guestrating"] = response["overallGuestRating"]
+    except (KeyError, IndexError):
+        # If no hotel is found, set the hotel name as "No rating found".
+        test.loc[index, "guestrating"] = "No rating found"
+
 
 # Drop rows where a certain value is present in a specific column
 values_to_drop = 'No price found'  # Replace with the value you want to drop
 column_to_check = 'price'   # Replace with the column name
 
 filtered_test = test[test[column_to_check] != values_to_drop]
+
+# Drop rows where a certain value is present in a specific column
+values_to_drop = 'No rating found'  # Replace with the value you want to drop
+column_to_check = 'guestrating'   # Replace with the column name
+
+filtered_test = filtered_test[filtered_test[column_to_check] != values_to_drop]
     
 
 # Save DataFrame to CSV
