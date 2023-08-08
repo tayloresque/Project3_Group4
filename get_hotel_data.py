@@ -25,7 +25,7 @@ city_list = [
     'Los Angeles, CA',
     'San Francisco, CA',
     'San Luis Obispo, CA',
-    ',Carmel-by-the-Sea, CA',
+    'Carmel-by-the-Sea, CA',
     'Laguna Beach, CA',
     'Morro Bay, CA',
     'San Clemente, CA',
