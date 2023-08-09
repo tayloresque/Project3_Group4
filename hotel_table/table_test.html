@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static /css/styles.css">
+    <style>
+        /* Custom styles for the hotel table */
+        #hotelTable {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 400px; /* Adjust the width as needed */
+            border: 1px solid #ccc;
+            margin-top: 20px; /* Add margin for separation */
+        }
+
+        #hotelTable th, #hotelTable td {
+            border: 1px solid #ccc;
+            padding: 5px;
+            text-align: center;
+        }
+
+        #hotelTable th {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+    <title>Travel Guide Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12"> <!-- Single Column for Title, City Selection, and Table -->
+                <table id="hotelTable">
+                    <thead>
+                        <tr>
+                            <th colspan="4"><h1>Hotel Information</h1></th>
+                        </tr>
+                        <tr>
+                            <th>City Selection</th>
+                            <th colspan="3">
+                                <label for="citySelect">Select a City:</label>
+                                <select id="citySelect">
+                                    <option value="">All Cities</option>
+                                    <option value="Santa Cruz">Santa Cruz</option>
+                                    <option value="Napa">Napa</option>
+                                    <option value="American Canyon">American Canyon</option>
+                                    <option value="Long Beach">Long Beach</option>
+                                    <option value="Fresno">Fresno</option>
+                                    <option value="Monterey">Monterey</option>
+                                    <option value="Monterey Park">Monterey Park	</option>
+                                    <option value="San Luis Obispo">San Luis Obispo</option>
+                                    <option value="Gilroy">Gilroy</option>
+                                    <option value="Santa Barbara">Santa Barbara</option>
+                                    <option value="Palm Springs">Palm Springs</option>
+                                    <option value="Sacramento">Sacramento</option>
+                                    <option value="West Sacramento">West Sacramento</option>
+                                    <option value="Woodland">Woodland</option>
+                                    <option value="Anaheim">Anaheim</option>
+                                    <option value="Fullerton">Fullerton</option>
+                                    <option value="San Diego">San Diego</option>
+                                    <option value="Los Angeles">Los Angeles</option>
+                                    <option value="San Francisco">San Francisco</option>
+                                    <option value="San Luis Obispo">San Luis Obispo</option>
+                                    <option value="Pismo Beach">Pismo Beach</option>
+                                    <option value="Carmel-By-The-Sea">Carmel-By-The-Sea</option>
+                                    <option value="Laguna Beach">Laguna Beach</option>
+                                    <option value="Carmel-By-The-Sea">Carmel-By-The-Sea</option>
+                                    <option value="Aliso Viejo">Aliso Viejo</option>
+                                    <option value="Morro Bay">Morro Bay</option>
+                                    <option value="Avalon">Avalon</option>
+                                    <option value="Big Bear Lake">Big Bear Lake</option>
+                                    <option value="South Pasadena">South Pasadena</option>
+                                    <option value="Pasadena">Pasadena</option>
+                                    <option value="Carlsbad">Carlsbad</option>
+                                    <option value="Fish Camp">Fish Camp</option>
+                                    <option value="Ahwahnee">Ahwahnee</option>
+                                    <option value="Fountain Valley">Fountain Valley</option>
+                                    <option value="Huntington Beach">Huntington Beach</option>
+                                    <option value="South Lake Tahoe">South Lake Tahoe</option>
+                                    <option value="Mesquite">Mesquite</option>
+                                    <option value="Eureka">Eureka</option>
+                                    <option value="Bakersfield">Bakersfield</option>
+                                    <option value="Oceanside">Oceanside</option>
+
+                                </select>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Hotel Name</th>
+                            <th>City</th>
+                            <th>Price</th>
+                            <th>Guest Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Hotel data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="hotel_table.js"></script>
+</body>
+</html>
