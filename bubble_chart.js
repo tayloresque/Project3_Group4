@@ -1,53 +1,52 @@
-function init(){
-    let selector = d3.select("destinationSelect");
-        d3.json("hotel_price.json").then(function(data) {
-            console.log(data)
-        //let names = data.price;
+let hotelData;
 
-        //for(let i = 0; i < names.length; i++){
-        // selector.append("option"). text(names[i]).property("value", namesames[i]);
-       // }
+const jsonFilePath = 'hotel_price.json';
 
-        //let firstSample = names[0];
-      //  buildCharts(firstSample);
-        
-    })  
+d3.json(jsonFilePath).then(function(data) {
+    hotelData = data;
 
-   
+    // Call updateBar here, after the data has been loaded
+    updateScatter(0);
+}).catch(function(error) {
+    console.error('Error loading the JSON file:', error);
+});
+
+function updateScatter(index) {
+  let ratingBuckets = {};
+  let ratingCounts = {};
+
+  for (let i = 0; i < hotelData.length; i++) {
+    let property = hotelData[i];
+    let wholeRating = Math.floor(property.price);
+
+    if (ratingBuckets[wholeRating]) {
+      ratingBuckets[wholeRating].push(property);
+    } else {
+      ratingBuckets[wholeRating] = [property];
+    }
+
+    if (ratingCounts[wholeRating]) {
+      ratingCounts[wholeRating]++;
+    } else {
+      ratingCounts[wholeRating] = 1;
+    }
+  }
+
+  let trace1 = {
+    x: Object.keys(ratingBuckets).map(Number),
+    y: Object.values(ratingCounts),
+    type: 'bubble'
+  };
+
+  let layout = {
+    title: 'Guest Rating Distribution',
+    xaxis: {
+      title: 'Guest Rating'
+    },
+    yaxis: {
+      title: 'Number of Hotels'
+    }
+  };
+
+  Plotly.newPlot('bubble', [trace1], layout);
 }
-
-//init();
-
-    function buildCharts(price) {
-        d3.json("hotel_price.json").then (function(data) {
-            let priceData = data.price;
-            let resultArray = priceData.filter((sampleDictionary) => sampleDictionary.name == price);
-            let result = resultArray[0];
-
-            let city = result.city;
-            let name = result.name;
-            let priceValues = result.price;
-
-            let bubbleLayout = {
-            title: "Hotel Price",
-                margin: { t: 0}, 
-                hovermode: "closest",
-                xaxis: { title: "Hotel Price"},
-
-            };
-            let bubbleData = [
-                {
-                x: priceValues,
-                y: city,
-                text: name,
-                mode: "markers",
-                marker: {
-                    size: priceValues,
-                    color: city,
-                    colorscale: "Earth"
-                }
-            }
-        ]
-        Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
-    })};
-init();
