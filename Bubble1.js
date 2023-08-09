@@ -34,7 +34,8 @@ function init() {
        
    });
     d3.json(url2).then(function(data) {
-        let value = data[1]
+        
+        let value = sampleInfo.filter(result => result.city == bubble);
             
     
             let bubbleTrace = {

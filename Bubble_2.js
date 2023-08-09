@@ -50,7 +50,10 @@ function init() {
         let values = [];
         let names = [];
         
+        
         for (i = 0; i < length; i++) {
+          //let value = data.filter(result => result.city == bubble);
+          //console.log(value);
           labels.push(data[i].city);
           values.push(data[i].price);
           names.push(data[i].name);

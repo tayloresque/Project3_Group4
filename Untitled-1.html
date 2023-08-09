@@ -41,9 +41,8 @@
         </div>
         <div class ="chartBox">
           <canvas id="bar-chart" width = "20px" height="10px"></canvas>
-          <button onclick="getData()">Get Data </button>
-          <button onclick="nextCity(-3, 3)"> Previous City</button>
-          <button onclick="nextCity(4)"> Next City</button>
+          <button onclick="getData()">Get Hotel Data </button>
+          
       </div>
       <h4 class="panel-title"></h4> <!-- insert new charts here-->
       <div id="plot"></div>
@@ -67,7 +66,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script>
       // fetch/get data block
-              getData();
+      
+            getData();
           
           async function getData() {
               const response = await fetch('https://api.json-generator.com/templates/eAX6PQ7qD8mW/data?access_token=68rhjxsz1p2xylbr8oqpqnl06cdcvmghz3318giq');
@@ -77,28 +77,39 @@
               length = data.length;
               console.log(length);
               
+            
+              
               
   
               labels = [];
               values = [];
+              names = [];
               for (i = 0; i < length; i++) {
                   labels.push(data[i].city);
+                  names.push(data[i].name);
                   values.push(data[i].price);
+                
               }
+              
               //console.log(values);
-              //console.log(labels);
+            
               //return data;
-  
+              
+              
+            
+            
               const myChart = new Chart(document.getElementById("bar-chart"), {
                 type: 'bar',
                   data: {
                       labels: labels,
                       datasets: [
                           {
-                              label: "Room Price: $",
+                              label: "Room price: $",
                               data: values,
-                              backgroundColor: 'rgb(255, 99, 132)',
-                              borderColor: 'pink'
+                              backgroundColor: 'rgb(255, 99, 132, 1)',
+                              borderColor: 'rgb(255, 206, 86, 1)',
+                              hoverBackgroundColor: 'rgb(255, 99, 132)',
+                              borderWidth: 2
                               
                           }
                       ]
@@ -106,12 +117,11 @@
                   options: {
                       responsive: true,
                       scales: {
-                          //x: {
-                              //type: 'linear',
-                              //position: 'bottom',
-                             // min:1,
-                             // max:4
-                          //},
+                          x: {
+                              ticks: {
+                                labels
+                              }
+                            },
                           y:{
                               beginAtZero: true
                           }
@@ -123,9 +133,13 @@
                       }
                   }
               });
-              
-          }
-    
+               
+            }
+      
+          //
+          //console.log(filterresult);
+          //}
+      
       </script>
 
         <h4 class="panel-title"></h4> <!-- insert new charts here-->
