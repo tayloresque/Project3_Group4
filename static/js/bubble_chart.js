@@ -2,10 +2,10 @@
 
 //const url = 'C:\Users\calei\OneDrive\Desktop\BC\Projects\Project3_Group4\Data\hotel_price.csv'        
     
-//d3.json('hotel_price.json').then(function(data) {
+d3.json('hotel_price.json').then(function(data) {
             // Use the fetched data for visualization
-    //console.log(data); // Just an example, you can customize the visualization here
-    //});
+    console.log(data); // Just an example, you can customize the visualization here
+    });
    
         function createScatter(bubble) {
           
@@ -50,7 +50,7 @@
                 Plotly.newPlot("bubble", [trace1], layout)
               });
           };          
-
+init ();
         
           
           
