@@ -1,104 +1,95 @@
-const url = "hotel_price.json"
+const url = "Data/hotel_price.csv";
+const url2= 'https://api.json-generator.com/templates/eAX6PQ7qD8mW/data?access_token=68rhjxsz1p2xylbr8oqpqnl06cdcvmghz3318giq';
 
 
-d3.json(url).then(function(data) {
-  console.log(data);
+d3.json(url2).then(function(data) {
+   
+  //console.log(data);
+}).catch(function(error) {
+  console.error('Error loading the JSON file:', error);
 });
 
-//function init() {
+function init() {
 
     
-    //let dropdownMenu = d3.select("destinationSelect");
+    let dropdownMenu = d3.select("destinationSelect");
   
     
-    //d3.json(url).then((data) => {
+       d3.json(url2).then(function (data) {
         
         
-        //let names = data.names;
-  
-       
-        //names.forEach((id) => {
-  
+        let priceData = data;
             
-            //console.log(id);
+        priceData.forEach((id)=>{
+            
+          console.log(id);
   
-            //dropdownMenu.append("option").text(id).property("value",id);
-       // });
+          dropdownMenu.append("option").text(id).property("value",id);
+        
+        });        
   
         
-      //let firstsamp = data.names[0];
+        let firstsamp = priceData[0];
   
          
         //console.log(firstsamp);
   
         
-      createScatter(0);
+        createScatter(firstsamp);
        
-  
-    //});
-  //};
-  
-  
-  
- 
-function createScatter(bubble) {
+    });
+ };
+   
+  function createScatter() {
   
     
-    d3.json(url).then((data) => {
+    d3.json(url2).then(function(data)  {
         
         
-        let priceInfo = data.price;
-  
+        let labels = [];
+        let values = [];
+        let names = [];
         
-        let value = priceInfo.filter(result => result.id == bubble);
-  
-         
-        let valueData = value[0];
-  
-        
-        let otu_ids = valueData.price;
-        let otu_labels = valueData.name;
-        let sample_values = valueData.city;
-  
-        
-        console.log(otu_ids,otu_labels,sample_values);
-        
+        for (i = 0; i < length; i++) {
+          labels.push(data[i].city);
+          values.push(data[i].price);
+          names.push(data[i].name);
+
+        }
+          console.log(values);
+          console.log(labels);
         
         let trace1 = {
-            x: otu_ids,
-            y: sample_values,
-            text: otu_labels,
+            x: labels,
+            y: values,
+            text: names,
             mode: "markers",
             marker: {
-                size: otu_ids,
-                color: sample_values,
+                size: (values /2),
+                color: 'pink',
                 colorscale: "Earth"
             }
         };
         
         let layout = {
-          title: "Hotel Price",
+          title: "Hotel Price Per City",
+          hovermode: 'closest'
         };
   
           
-          Plotly.newPlot("bubble", [trace1], layout)
+      Plotly.newPlot("bubble", [trace1], layout)
       });
-  };
   
-  
-
-  
-  
-function optionChanged(newValue) { 
+    }
+  //function optionChanged(newValue) { 
   
     
-    console.log(newValue); 
+  //console.log(newValue); 
   
-    
-    createScatter(newValue)
+  //createScatter(newValue)
     //createBar(newValue)
     //createSummary(newValue)
-  };
+  //};
   
   
-//init();  
+init();  

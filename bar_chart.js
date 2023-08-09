@@ -1,23 +1,23 @@
 let hotelData;
 
-const jsonFilePath = 'hotel_price.json';
+const jsonFilePath = 'hotel_final.json';
 
 d3.json(jsonFilePath).then(function(data) {
     hotelData = data;
 
     // Call updateBar here, after the data has been loaded
-    updateScatter(0);
+    updateBar(0);
 }).catch(function(error) {
     console.error('Error loading the JSON file:', error);
 });
 
-function updateScatter(index) {
+function updateBar(index) {
   let ratingBuckets = {};
   let ratingCounts = {};
 
   for (let i = 0; i < hotelData.length; i++) {
     let property = hotelData[i];
-    let wholeRating = Math.floor(property.price);
+    let wholeRating = Math.floor(property.guestrating);
 
     if (ratingBuckets[wholeRating]) {
       ratingBuckets[wholeRating].push(property);
@@ -35,7 +35,7 @@ function updateScatter(index) {
   let trace1 = {
     x: Object.keys(ratingBuckets).map(Number),
     y: Object.values(ratingCounts),
-    type: 'bubble'
+    type: 'bar'
   };
 
   let layout = {
@@ -48,5 +48,5 @@ function updateScatter(index) {
     }
   };
 
-  Plotly.newPlot('bubble', [trace1], layout);
+  Plotly.newPlot('bar', [trace1], layout);
 }
