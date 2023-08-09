@@ -22,7 +22,7 @@ function init() {
             
         priceData.forEach((id)=>{
             
-          console.log(id);
+          //console.log(id);
   
           dropdownMenu.append("option").text(id).property("value",id);
         
@@ -40,7 +40,7 @@ function init() {
     });
  };
    
-  function createScatter() {
+  function createScatter(bubble) {
   
     
     d3.json(url2).then(function(data)  {
@@ -55,41 +55,42 @@ function init() {
           values.push(data[i].price);
           names.push(data[i].name);
 
-        }
-          console.log(values);
-          console.log(labels);
         
-        let trace1 = {
+          //console.log(values);
+          //console.log(labels);
+        
+          let trace1 = {
             x: labels,
             y: values,
             text: names,
             mode: "markers",
             marker: {
-                size: (values /2),
+                size: 20,
                 color: 'pink',
                 colorscale: "Earth"
             }
-        };
+          };
         
-        let layout = {
-          title: "Hotel Price Per City",
-          hovermode: 'closest'
-        };
+          let layout = {
+            title: "Hotel Price Per City",
+            hovermode: 'closest'
+          };
   
           
-      Plotly.newPlot("bubble", [trace1], layout)
-      });
+        Plotly.newPlot("bubble", [trace1], layout)
+      }});
+  }
+    
   
-    }
-  //function optionChanged(newValue) { 
+  function optionChanged(newValue) { 
   
     
-  //console.log(newValue); 
+  console.log(newValue); 
   
-  //createScatter(newValue)
+  createScatter(newValue)
     //createBar(newValue)
     //createSummary(newValue)
-  //};
+  };
   
   
 init();  
