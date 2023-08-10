@@ -12,10 +12,8 @@
   <body>
 
     <div class ="chartBox">
-        <canvas id="scatter-chart" width = "50" height="20"></canvas>
-        <button onclick="getData()">Get Data </button>
-        <button onclick="nextCity(-3, 3)"> Previous City</button>
-        <button onclick="nextCity(4)"> Next City</button>
+        <canvas id="bar-chart" width = "50" height="20"></canvas>
+
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script>
@@ -85,18 +83,10 @@
                     }
                 }
             });
-            function nextCity(start, end){
-                const startScale = myChart.options.scales.x.min + start;
-                const endScale = mychart.options.scales.x.max + end;
-                console.log(startScale + start);
-
-                //whihc buton we click
-                myChart.options.scales.x.min = startScale;
-                myChart.options.scales.x.max = endScale;
-                myChart.update();
-            }
-  
+            
         }
+  
+        
   
     </script>
 </body>

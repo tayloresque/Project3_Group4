@@ -38,7 +38,7 @@ function init() {
         createScatter(firstsamp);
        
     });
- };
+  };
    
   function createScatter(bubble) {
   
@@ -68,15 +68,19 @@ function init() {
             text: names,
             mode: "markers",
             marker: {
-                size: 20,
+                size: 15 ,
                 color: 'pink',
-                colorscale: "Earth"
+                line: {
+                  color: 'red',
+                  width: 1
+                }
             }
           };
         
           let layout = {
             title: "Hotel Price Per City",
-            hovermode: 'closest'
+            hovermode: 'closest',
+            
           };
   
           

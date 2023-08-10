@@ -15,11 +15,11 @@ function init() {
         
         let priceData = data;
             
-        priceData.forEach((id)=>{
+        priceData.forEach((city)=>{
             
-            console.log(id);
+            console.log(city);
   
-            dropdownMenu.append("option").text(id).property("value",id);
+            dropdownMenu.append("option").text(city).property("value",city);
         
         });        
   
@@ -27,18 +27,29 @@ function init() {
         let firstsamp = priceData[0];
   
          
-        //console.log(firstsamp);
+        console.log(firstsamp);
   
         
         createScatter(firstsamp);
        
-   });
-    d3.json(url2).then(function(data) {
+     });
+        function createScatter(bubble) {
+        d3.json(url2).then(function(data) {
         
-        let value = sampleInfo.filter(result => result.city == bubble);
+        let value = data.filter(result => result.city == bubble);
+        let valueData = value[0];
+  
+        
+        let otu_ids = valueData.name;
+        let otu_labels = valueData.price;
+        let sample_values = valueData.city;
+  
+        
+        console.log(otu_ids,otu_labels,sample_values);
+        
             
     
-            let bubbleTrace = {
+        let bubbleTrace = {
                 x: value.price,
                 y: value.name,
                 text: value.city,
@@ -51,7 +62,7 @@ function init() {
         console.log(bubbleTrace);
   
     // Create the data array for the bubble chart
-            //let bubbleData = [bubbleTrace];
+            let bubbleData = [bubbleTrace];
   
     // Define the layout for the bubble chart
             let bubbleLayout = {
@@ -59,8 +70,10 @@ function init() {
             xaxis: { title: "Price" },
             yaxis: { title: "Hotels" }
             };
-  
+       
     // Plot the bubble chart to a div tag with id "bubble"
-        Plotly.newPlot("bubble", [bubbleTrace], bubbleLayout);
-    })};
+        Plotly.newPlot("bubble", bubbleData, bubbleLayout);
+        });
+    };
+ }
 init();
