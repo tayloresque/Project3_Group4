@@ -40,9 +40,9 @@
 
         </div>
         <div class ="chartBox">
-          <canvas id="bar-chart" width = "20px" height="10px"></canvas>
+          <canvas id="bar-chart" width = "300px" height="150px"></canvas>
           <button onclick="getData()">Get Hotel Data </button>
-          <canvas id="bubble-chart" width = "20px" height="10px"></canvas>
+          <canvas id="bubble-chart" width = "50px" height="30px"></canvas>
           <button onclick="getData()">Get Hotel Data </button>
           
       </div>
@@ -107,11 +107,11 @@
               const myChart = new Chart(document.getElementById("bar-chart"), {
                 type: 'bar',
                   data: {
-                      labels: labels,
+                      labels: names,
                       datasets: [
                           {
-                              label: "Room price: $",
-                              data: values,
+                              label: "Average guest ratings",
+                              data: guestrating,
                               backgroundColor: 'rgb(255, 99, 132, 1)',
                               borderColor: 'rgb(255, 206, 86, 1)',
                               hoverBackgroundColor: 'rgb(255, 99, 132)',
@@ -135,7 +135,7 @@
                       legend: { display: false },
                       title: {
                           display: true,
-                          text: 'Hotels Price Average for Single Room'
+                          text: 'Hotels Average Guest Ratings'
                       }
                   }
               });
@@ -172,7 +172,7 @@
                       },
                       title:{
                         display: true,
-                        text: "Average Price"
+                        text: "Hotel Average Price per Room"
                       }
                     }
 
