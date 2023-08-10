@@ -87,7 +87,6 @@ function init() {
 }
 
 function updateBar(selectedCity) {
-  function updateBar(index) {
   let ratingBuckets = {};
   let ratingCounts = {};
 
@@ -126,7 +125,7 @@ function updateBar(selectedCity) {
 
   Plotly.newPlot('bar', [trace1], layout);
 }
-}
+
 
 init();
 
