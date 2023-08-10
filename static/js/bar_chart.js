@@ -1,4 +1,4 @@
-const jsonFilePath = 'data/hotel_final.json';
+const jsonFilePath = '/getjson';
 let hotelData; 
 
 function init() {

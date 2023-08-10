@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function updateHotelData(selectedCity) {
       try {
             const response = await fetch('/getjson');
-            console.log(response);
             jsonData= await response.json(); // Update jsonData
             console.log('Updated jsonData:', jsonData); // Log jsonData for debugging
             const tableBody = document.querySelector('#hotelTable tbody');
@@ -113,63 +112,61 @@ function initPriceChart(cityData) {
     });
   }
 
-  function initBubbleChart(cityData) {
-    const bubbleData = cityData.map(hotel => ({
-        x: hotel.price,
-        y: hotel.name,
-        r: 10, // Adjust the bubble radius as needed
-        text: hotel.city,
-    }));
-    //This is a common practice when working with Chart.js or similar libraries to ensure that you're not creating multiple instances of the same chart.
-    if (window.myBubbleChart) {
-        window.myBubbleChart.destroy();
-    }
-    const ctx = document.getElementById('bubbleChart').getContext('2d');
-    window.myBubbleChart = new Chart(ctx, {
-        type: 'bubble',
-        data: {
-            datasets: [{
-                label: 'Hotel Bubbles',
-                data: bubbleData,
-                backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                },
-                x: {
-                    beginAtZero: true,
-                }
-            },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: context => {
-                            const data = context.dataset.data[context.dataIndex];
-                            return `City: ${data.text}\nPrice: ${data.x}\nHotel Name: ${data.y}`;
-                        }
-                    }
-                }
-            }
-        }
-    });
-}
+  function initBar(cityData) {
+    // Implement your existing updateBar code here
+    let ratingBuckets = {};
+    let ratingCounts = {};
 
+    for (let i = 0; i < cityData.length; i++) {
+        let property = selectedCity[i];
+        let wholeRating = Math.floor(property.guestrating);
+
+        if (ratingBuckets[wholeRating]) {
+            ratingBuckets[wholeRating].push(property);
+        } else {
+            ratingBuckets[wholeRating] = [property];
+        }
+
+        if (ratingCounts[wholeRating]) {
+            ratingCounts[wholeRating]++;
+        } else {
+            ratingCounts[wholeRating] = 1;
+        }
+    }
+
+    let trace1 = {
+        x: Object.keys(ratingBuckets).map(Number),
+        y: Object.values(ratingCounts),
+        type: 'bar'
+    };
+
+    let layout = {
+        title: 'Guest Rating Distribution',
+        xaxis: {
+            title: 'Guest Rating'
+        },
+        yaxis: {
+            title: 'Number of Hotels'
+        }
+    };
+
+    Plotly.newPlot('bar', [trace1], layout);
+}
     // Event listener for city selection change
-citySelect.addEventListener('change', async () => {
-    const selectedCity = citySelect.value;
-    await updateHotelData(selectedCity);
-    initChart(jsonData); // Initialize guest rating chart
-    initPriceChart(jsonData); // Initialize price chart
-});
+    citySelect.addEventListener('change', async () => {
+      const selectedCity = citySelect.value;
+      const filteredData = jsonData.filter(hotel => selectedCity === '' || hotel.city === selectedCity);
+
+      // Update the table and charts with filtered data
+      await updateHotelData(selectedCity);
+      initChart(filteredData);
+      initPriceChart(filteredData);
+      initBar(filteredData);
+  });
     
     // Initial data load (show all cities initially)
-await updateHotelData('');
-initChart(jsonData); // Initialize guest rating chart
-initPriceChart(jsonData); // Initialize price chart
-    
+    await updateHotelData('');
+    initChart(jsonData);
+    initPriceChart(jsonData);
+    initBar(jsonData);
 });
