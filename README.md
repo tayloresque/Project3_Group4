@@ -6,7 +6,21 @@ Welcome to the California Vacation Destinations Dashboard! This interactive dash
 
 ## Result Dashboard
 
-gitpage url:
+To get started with the dashboard, follow these steps:
+
+1. Clone this repository to your local machine
+
+2. Navigate to the project directory
+
+3. Run the Flask server:
+
+`python app.py`
+
+4. Open a web browser and navigate to http://localhost:5000 to access the California Vacation Destinations Dashboard.
+
+![](images/sample1.png)
+
+![](images/sample2.png)
 
 
 ## Table of Contents

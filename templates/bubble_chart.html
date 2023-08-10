@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Travel Guide Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+ 
+</head>
+  <link rel="stylesheet" type='text/css' href="style.css">
+</head>
+<body>
+  <div class="background-image"></div>
+
+  <div class="container">
+
+
+<body>
+
+    
+  <div class="container">
+    <div class="row">
+      <div class="col-md-14 jumbotron text-center">
+        <h1>Bubble Chart</h1>
+      </div>
+    </div>
+    <div class="row">
+      
+        <div class="col-md-2">       
+        </div>
+
+        </div>
+        <div class ="chartBox">
+          
+          <canvas id="bubble-chart" width = "50px" height="30px"></canvas>
+          
+          
+      </div>
+      <h4 class="panel-title"></h4> <!-- insert new charts here-->
+      <div id="plot"></div>
+    </div>
+    <div class="col-md-5">
+      <div id="guageChart"></div> <!-- insert new charts here-->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="bubble"></div> <!-- insert new charts here-->
+      <h4 class="panel-title"></h4>
+    </div>
+    <div class="row">
+      <div class="col-md-11">
+        <div id="bar"></div> <!-- insert new charts here-->
+        <h4 class="panel-title"></h4>
+      </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script>
+      // fetch/get data block
+      
+          getData();
+          
+          async function getData() {
+              const response = await fetch('https://api.json-generator.com/templates/eAX6PQ7qD8mW/data?access_token=68rhjxsz1p2xylbr8oqpqnl06cdcvmghz3318giq');
+              console.log(response);
+              const data = await response.json();
+              console.log(data);
+              length = data.length;
+              console.log(length);
+              
+            
+              
+              
+  
+              labels = [];
+              values = [];
+              names = [];
+              lat=[];
+              lon=[];
+              globalscore=[];
+              guestrating=[];
+              for (i = 0; i < length; i++) {
+                  labels.push(data[i].city);
+                  names.push(data[i].name);
+                  values.push(data[i].price);
+                  lat.push(data[i].lat);
+                  lon.push(data[i].lon);
+                  globalscore.push(data[i].globalScore);
+                  guestrating.push(data[i].guestrating);
+                
+              }
+              console.log(lat);
+              console.log(lon);
+          
+              //const myChart = new Chart(document.getElementById("bar-chart"), {
+               // type: 'bar',
+                //  data: {
+                      //labels: names,
+                      //datasets: [
+                       //   {
+                            //  label: "Average guest ratings",
+                            //  data: guestrating,
+                            //  backgroundColor: 'rgb(255, 99, 132, 1)',
+                          //    borderColor: 'rgb(255, 206, 86, 1)',
+                          ///    hoverBackgroundColor: 'rgb(255, 99, 132)',
+                          //    borderWidth: 2
+                              
+                      //    }
+                    //  ]
+              //    },
+                //  options: {
+                     // responsive: true,
+                   //   scales: {
+                       //   x: {
+                           //   ticks: {
+                            //    labels
+                          // //   }
+                         //   },
+                        //  y:{
+                        //      beginAtZero: true
+                       //   }
+                     // },
+                     // legend: { display: false },
+                     // title: {
+                        //  display: true,
+                       //   text: 'Hotels Average Guest Ratings'
+                    //  }
+                 // }
+              //});
+              var dataBubbles = [];
+              for (var i = 0; i < lat.length; i++) {
+                    dataBubbles.push({
+                    x: lat[i],
+                    y: lon[i],
+                    r: values[i] /12
+                });
+              }
+            const myChart2 = new Chart(document.getElementById('bubble-chart'), {
+              type: 'bubble',
+                data : {
+                  labels: labels,
+                  datasets: [
+                    {
+                        label: 'Prices per room by location: $',
+                        data: dataBubbles,
+                        backgroundColor: 'rgb(255, 99, 132)'
+                        }]
+                    },
+                    options: {
+                      responsive: true,
+                      scales: {
+                        x:{
+                          type: 'linear',
+                          position: 'bottom',
+                          beginAtZero: true
+                        },
+                        y: {
+                          beginAtZero: true
+                        },
+                      },
+                      title:{
+                        display: true,
+                        text: "Hotel Average Price per Room"
+                      }
+                    }
+
+            });   
+            }
+      
+          //
+          //console.log(filterresult);
+          //}
+      
+      </script>
+
+        <h4 class="panel-title"></h4> <!-- insert new charts here-->
+        <div id="plot"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="guageChart"></div> <!-- insert new charts here-->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="bubble"></div> <!-- insert new charts here-->
+        <h4 class="panel-title"></h4>
+      </div>
+      <div class="row">
+        <div class="col-md-11">
+          <div id="bar"></div> <!-- insert new charts here-->
+          <h4 class="panel-title"></h4>
+        </div>
+    </div>
+  </div>
+
+  
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="Bubble_2.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  
+    
+  
+ 
+</body>
+
+</html>

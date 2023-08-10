@@ -165,13 +165,11 @@ citySelect.addEventListener('change', async () => {
     await updateHotelData(selectedCity);
     initChart(jsonData); // Initialize guest rating chart
     initPriceChart(jsonData); // Initialize price chart
-    initBubbleChart(jsonData); // Initialize bubble chart
 });
     
     // Initial data load (show all cities initially)
 await updateHotelData('');
 initChart(jsonData); // Initialize guest rating chart
 initPriceChart(jsonData); // Initialize price chart
-initBubbleChart(jsonData); // Initialize bubble chart
     
 });
