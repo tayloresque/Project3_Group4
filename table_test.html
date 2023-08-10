@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/styles.css">
     <style>
         /* Custom styles for the hotel table */
         #hotelTable {
             border-collapse: collapse;
-            width: 100%;
-            max-width: 400px; /* Adjust the width as needed */
-            border: 1px solid #ccc;
+            width: 700%;
+            max-width: 800px; /* Adjust the width as needed */
+            border: 1px solid #e6d9d9;
             margin-top: 20px; /* Add margin for separation */
         }
 
@@ -23,16 +23,48 @@
         }
 
         #hotelTable th {
-            background-color: #f2f2f2;
+            background-color: #71baeb;
+            
         }
 
-        .col-md-6 {
-        width: 50%;
+        #hotelTable td {
+            background-color: #95bdea;
+        }
+
+    .chart-container {
+      display: flex;
+      flex-direction: column; /* Stack chart and label vertically */
+  align-items: center;
+  margin-top: 20px;
+}
+
+.chart-label {
+  margin-top: 5px; /* Adjust margin for proper spacing */
+  font-weight: bold; /* Make the label bold for better visibility */
+}
+
+    /* Styling for the hotel table */
+    #hotelTable {
+      width: 100%; /* Make the table full width */
+      border-collapse: collapse;
+      border: 1px solid #ccc; /* Add border to the table */
+      margin-top: 20px; /* Add margin for separation */
+    }
+
+    #hotelTable th, #hotelTable td {
+      border: 1px solid #ccc; /* Add border to table cells */
+      padding: 5px;
+      text-align: center;
     }
     </style>
 
-    <title>Travel Guide Dashboard</title>
 </head>
+<div class="container">
+    <div class="row">
+      <div class="col-md-14 jumbotron text-center">
+        <h1>Explore California</h1>
+        <p>Use the interactive charts below to decide where to stay</p>
+      </div>
 <body>
     <div class="container">
         <div class="row">
@@ -103,50 +135,47 @@
                         <!-- Hotel data will be populated here -->
                     </tbody>
                 </table>
-                <div class="col-md-6"> <!-- Column for Price Range Filter Table -->
-                    <table id="priceFilterInputTable">
-                        <thead>
-                            <tr>
-                                <th>Min Price</th>
-                                <th>Max Price</th>
-                                <th></th> <!-- Empty header for the Add button -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="number" id="minPriceInput"></td>
-                                <td><input type="number" id="maxPriceInput"></td>
-                                <td><button id="addPriceRange">Add</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- Define the new table for displaying filtered price range results -->
-                    <table id="filteredPriceTable">
-                        <thead>
-                            <tr>
-                              <th>Price Range</th>
-                                <th>Count</th>
-                             </tr>
-                        </thead>
-    <tbody>
-        <!-- Table body content will be added here -->
-    </tbody>
-</table>
-                </div>
-            </div>
-        </div>
-            <div class="col-md-10"> <!-- Column for Charts -->
-                <canvas id="chart"></canvas>
-                <canvas id="priceChart"></canvas>
-                <canvas id="bubbleChart"></canvas>
+            </table>
+            <canvas id="chart"></canvas>
+            <canvas id="priceChart"></canvas>
             </div>
         </div>
     </div>
-
-         
-    <!--added js for filter by price-->
-    <script src="filteredPriceTable.js"></script> <!-- Include the price filter script -->
+    <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <h1>Search by Price</h1>
+              <label for="minPriceFilter">Select a minimum price:</label>
+              <input type="number" id="minPriceFilter" min="0">
+              <label for="priceFilter">Select a maximum price:</label>
+              <input type="number" id="priceFilter" min="0">
+              <button onclick="filterHotels()">Filter Hotels</button>>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+              <table id="hotelTable">
+                  <thead>
+                      <tr>
+                          <th>Name</th>
+                          <th>City</th>
+                          <th>State</th>
+                          <th>Price</th>
+                          <th>Rating</th>
+                      </tr>
+                  </thead>
+                  <tbody id="hotelTableBody">
+                      <!-- Hotel data will be populated here -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+                
+    
     <script src="hotel_table.js"></script>
+    <script src="priceFilter.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+    
 </body>
 </html>
