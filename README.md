@@ -6,7 +6,7 @@ Welcome to the California Vacation Destinations Dashboard! This interactive dash
 
 ## Result Dashboard
 
-gitpage url :
+gitpage url:
 
 
 ## Table of Contents
