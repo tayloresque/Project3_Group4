@@ -2,6 +2,7 @@ import os
 import requests
 import pandas as pd
 import json
+import time
 from pymongo import MongoClient
 
 ## Import the Priceline API key
@@ -76,7 +77,7 @@ for city in city_list:
                 
                 break  # Exit the while loop if data is successfully retrieved
             else:
-                pass
+                time.sleep(1)
         else:
             break  # Exit the while loop on error
 
@@ -119,6 +120,7 @@ hotel_data_select = hotel_data_select.drop_duplicates(subset=['id'], keep='first
 test = hotel_data_select.copy()
 
 test["price"] = ""
+test["guestrating"] = ""
 
 for index, row in test.iterrows():
     
@@ -142,14 +144,18 @@ for index, row in test.iterrows():
 
     try:
         test.loc[index, "price"] = response["rooms"][0]["displayableRates"][0]["displayPrice"]
+        test.loc[index, "guestrating"] = response["overallGuestRating"]
     except (KeyError, IndexError):
         test.loc[index, "price"] = "No price found"
+        test.loc[index, "guestrating"] = "No rating found"
         
     try:
         test.loc[index, "guestrating"] = response["overallGuestRating"]
     except (KeyError, IndexError):
-        # If no hotel is found, set the hotel name as "No rating found".
         test.loc[index, "guestrating"] = "No rating found"
+        
+    time.sleep(1)
+        
 
 
 # Drop rows where a certain value is present in a specific column
