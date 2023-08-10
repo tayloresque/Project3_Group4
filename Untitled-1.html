@@ -30,18 +30,12 @@
     </div>
     <div class="row">
       
-        <div class="col-md-2">
-            <div class="well">
-                <h5>Where do you want to travel?</h5>
-                <select id="destinationSelect">
-                    <option value="default">Select a city</option>
-                </select>
+        <div class="col-md-2">       
         </div>
 
         </div>
         <div class ="chartBox">
-          <canvas id="bar-chart" width = "300px" height="150px"></canvas>
-          <button onclick="getData()">Get Hotel Data </button>
+          
           <canvas id="bubble-chart" width = "50px" height="30px"></canvas>
           <button onclick="getData()">Get Hotel Data </button>
           
@@ -104,41 +98,41 @@
               console.log(lat);
               console.log(lon);
           
-              const myChart = new Chart(document.getElementById("bar-chart"), {
-                type: 'bar',
-                  data: {
-                      labels: names,
-                      datasets: [
-                          {
-                              label: "Average guest ratings",
-                              data: guestrating,
-                              backgroundColor: 'rgb(255, 99, 132, 1)',
-                              borderColor: 'rgb(255, 206, 86, 1)',
-                              hoverBackgroundColor: 'rgb(255, 99, 132)',
-                              borderWidth: 2
+              //const myChart = new Chart(document.getElementById("bar-chart"), {
+               // type: 'bar',
+                //  data: {
+                      //labels: names,
+                      //datasets: [
+                       //   {
+                            //  label: "Average guest ratings",
+                            //  data: guestrating,
+                            //  backgroundColor: 'rgb(255, 99, 132, 1)',
+                          //    borderColor: 'rgb(255, 206, 86, 1)',
+                          ///    hoverBackgroundColor: 'rgb(255, 99, 132)',
+                          //    borderWidth: 2
                               
-                          }
-                      ]
-                  },
-                  options: {
-                      responsive: true,
-                      scales: {
-                          x: {
-                              ticks: {
-                                labels
-                              }
-                            },
-                          y:{
-                              beginAtZero: true
-                          }
-                      },
-                      legend: { display: false },
-                      title: {
-                          display: true,
-                          text: 'Hotels Average Guest Ratings'
-                      }
-                  }
-              });
+                      //    }
+                    //  ]
+              //    },
+                //  options: {
+                     // responsive: true,
+                   //   scales: {
+                       //   x: {
+                           //   ticks: {
+                            //    labels
+                          // //   }
+                         //   },
+                        //  y:{
+                        //      beginAtZero: true
+                       //   }
+                     // },
+                     // legend: { display: false },
+                     // title: {
+                        //  display: true,
+                       //   text: 'Hotels Average Guest Ratings'
+                    //  }
+                 // }
+              //});
               var dataBubbles = [];
               for (var i = 0; i < lat.length; i++) {
                     dataBubbles.push({
@@ -210,8 +204,6 @@
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="Bubble_2.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="bar_chart.js"></script>
-  <script src="drop_down.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   
