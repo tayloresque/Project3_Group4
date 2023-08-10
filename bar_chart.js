@@ -53,22 +53,41 @@
 //   Plotly.newPlot('bar', [trace1], layout);
 // }
 
-// Fetch the JSON data and assign it to the variables
-let hotelData;
-
 const jsonFilePath = 'data/hotel_final.json';
+let hotelData; 
 
-// Load JSON data
-d3.json(jsonFilePath).then(function(data) {
-    hotelData = data;
+function init() {
+    let dropdownMenu = d3.select("#destinationSelect");
+    const cities = new Set();
 
-    // Call updateBar here, after the data has been loaded
-    updateBar(0);
-}).catch(function(error) {
-    console.error('Error loading the JSON file:', error);
-});
+    d3.json(jsonFilePath).then((data) => {
+        hotelData = data; 
+        data.forEach((hotel) => {
+            cities.add(hotel.city);
+        });
 
-function updateBar(index) {
+        const cityArray = Array.from(cities);
+        cityArray.sort();
+
+        cityArray.forEach((city) => {
+            dropdownMenu.append("option").text(city).property("value", city);
+        });
+
+        // Call updateBar when the page loads
+        updateBar(cityArray[0]);
+
+        // Add an event listener to the dropdown menu
+        dropdownMenu.on("change", function() {
+            let selectedCity = this.value;
+            updateBar(selectedCity);
+        });
+    }).catch(function(error) {
+        console.error('Error loading the JSON file:', error);
+    });
+}
+
+function updateBar(selectedCity) {
+  function updateBar(index) {
   let ratingBuckets = {};
   let ratingCounts = {};
 
@@ -89,49 +108,25 @@ function updateBar(index) {
     }
   }
 
-  const labels = Object.keys(ratingBuckets).map(Number);
-  const dataValues = Object.values(ratingCounts);
+  let trace1 = {
+    x: Object.keys(ratingBuckets).map(Number),
+    y: Object.values(ratingCounts),
+    type: 'bar'
+  };
 
-  const ctx = document.getElementById('barChart').getContext('2d');
-  const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Number of Hotels',
-        data: dataValues,
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1
-      }]
+  let layout = {
+    title: 'Guest Rating Distribution',
+    xaxis: {
+      title: 'Guest Rating'
     },
-    options: {
-      scales: {
-        x: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: 'Guest Rating'
-          }
-        },
-        y: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: 'Number of Hotels'
-          }
-        }
-      },
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false
-        },
-        title: {
-          display: true,
-          text: 'Guest Rating Distribution'
-        }
-      }
+    yaxis: {
+      title: 'Number of Hotels'
     }
-  });
+  };
+
+  Plotly.newPlot('bar', [trace1], layout);
 }
+}
+
+init();
+
