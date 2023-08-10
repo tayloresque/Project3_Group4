@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Create a function to update the hotel table
     async function updateHotelData(selectedCity) {
       try {
-            const response = await fetch('../../data/hotel_final.json');
+            const response = await fetch('/getjson');
+            console.log(response);
             jsonData= await response.json(); // Update jsonData
             console.log('Updated jsonData:', jsonData); // Log jsonData for debugging
             const tableBody = document.querySelector('#hotelTable tbody');
