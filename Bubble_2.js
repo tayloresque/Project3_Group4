@@ -49,6 +49,7 @@ function init() {
         let labels = [];
         let values = [];
         let names = [];
+        console.log(values)
         
         
         for (i = 0; i < length; i++) {
