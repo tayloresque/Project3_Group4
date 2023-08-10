@@ -117,16 +117,50 @@
                         <!-- Hotel data will be populated here -->
                     </tbody>
                 </table>
-            </table>
-            <canvas id="chart"></canvas>
-            <canvas id="priceChart"></canvas>
-            <canvas id="bar"></canvas>
+                
+                <div class="col-md-6"> <!-- Column for Price Range Filter Table -->
+                    <table id="priceFilterInputTable">
+                        <thead>
+                            <tr>
+                                <th>Min Price</th>
+                                <th>Max Price</th>
+                                <th></th> <!-- Empty header for the Add button -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="number" id="minPriceInput"></td>
+                                <td><input type="number" id="maxPriceInput"></td>
+                                <td><button id="addPriceRange">Add</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Define the new table for displaying filtered price range results -->
+                    <table id="filteredPriceTable">
+                        <thead>
+                            <tr>
+                              <th>Price Range</th>
+                                <th>Count</th>
+                             </tr>
+                        </thead>
+    <tbody>
+        <!-- Table body content will be added here -->
+    </tbody>
+</table>
+                </div>
+            </div>
+        </div>
+            <div class="col-md-10"> <!-- Column for Charts -->
+                <canvas id="chart"></canvas>
+                <canvas id="priceChart"></canvas>
+                <canvas id="bubbleChart"></canvas>
             </div>
         </div>
     </div>
    
     
     <script src="static/js/hotel_table.js"></script>
+    <script src="static/js/priceFilter.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
