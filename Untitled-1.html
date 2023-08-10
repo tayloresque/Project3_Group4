@@ -32,7 +32,9 @@
       
         <div class="col-md-2">       
         </div>
-
+        <a href="table-test.html">
+          <button>Next page</button>
+        </a>
         </div>
         <div class ="chartBox">
           
@@ -144,7 +146,7 @@
             const myChart2 = new Chart(document.getElementById('bubble-chart'), {
               type: 'bubble',
                 data : {
-                  labels: labels,
+                  labels: names,
                   datasets: [
                     {
                         label: 'Prices per room by location: $',
@@ -153,6 +155,13 @@
                         }]
                     },
                     options: {
+                      plugins: {
+                        legend: {
+                          display: true,
+                          labels: {
+                            text: labels
+                        }
+                      },
                       responsive: true,
                       scales: {
                         x:{
@@ -170,7 +179,7 @@
                       }
                     }
 
-            });   
+            }});   
             }
       
           //
