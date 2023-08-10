@@ -118,7 +118,7 @@ function initPriceChart(cityData) {
     let ratingCounts = {};
 
     for (let i = 0; i < cityData.length; i++) {
-        let property = selectedCity[i];
+        let property = cityData[i];
         let wholeRating = Math.floor(property.guestrating);
 
         if (ratingBuckets[wholeRating]) {
