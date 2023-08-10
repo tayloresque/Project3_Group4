@@ -1,0 +1,100 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type='text/css' href="style.css">
+    
+    <title>Travel Guide Dashboard</title>
+    <style>
+        /* Custom styles for the hotel table */
+        #hotelTable {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 400px; /* Adjust the width as needed */
+            border: 1px solid #ccc;
+            margin-top: 20px; /* Add margin for separation */
+        }
+
+        #hotelTable th, #hotelTable td {
+            border: 1px solid #ccc;
+            padding: 5px;
+            text-align: center;
+        }
+
+        #hotelTable th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    
+        <!-- Insert the contents of the second HTML code snippet here -->
+        <div class="row">
+            <div class="col-md-14 jumbotron text-center">
+                <h1>Travel Guide Dashboard</h1>
+                <p>Use the interactive charts below to explore exciting destinations</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"> <!-- Single Column for Title, City Selection, and Table -->
+                    <table id="hotelTable">
+                        <thead>
+                            <tr>
+                                <th colspan="4"><h1>Hotel Information</h1></th>
+                            </tr>
+                            <tr>
+                                <th>City Selection</th>
+                                <th colspan="3">
+                                    <label for="citySelect">Select a City:</label>
+                                    <select id="citySelect">
+                                        <option value="">All Cities</option>
+                                        <option value="Santa Cruz">Santa Cruz</option>
+                                        <option value="Napa">Napa</option>
+                                        <option value="American Canyon">American Canyon</option>
+                                        <!-- Add more city options here -->
+                                    </select>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Hotel Name</th>
+                                <th>City</th>
+                                <th>Price</th>
+                                <th>Guest Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Hotel data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+            <div class="col-md-5">
+                <div id="bar-chart"></div>
+                <button onclick="getData()">Get Hotel Data</button>
+            </div>
+            <div class="col-md-5">
+                <div id="guageChart"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="bubble"></div>
+            </div>
+        </div>
+    </div>
+    <script src="hotel_table.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="bar_chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  
+</body>
+
+</html>
