@@ -13,16 +13,16 @@ client = pymongo.MongoClient(conn)
 db = client.hotel_db
 collection = db.hotel
 
+# Load data from JSON file and insert into MongoDB
+# fix file structure path?
+def load_data_to_mongodb():
+    with open('static/json/hotel_final.json', 'r') as json_file:
+        data = json.load(json_file)
+        collection.insert_many(document)
+
 #################################################
 # Flask Routes
 #################################################
-# Load data from JSON file and insert into MongoDB
-def load_data_to_mongodb():
-    with open('data/hotel_final.json', 'r') as json_file:
-        data = json.load(json_file)
-        for document in data:
-            collection.insert_one(document)
-
 @app.route("/get_hotel_data")
 def get_hotel_data():
     
@@ -30,15 +30,10 @@ def get_hotel_data():
     data = list(collection.find({}, {"_id": 0}))
     return jsonify(data)
 
-# Route for homepage
-@app.route("/")
-def mainpage():
-    return render_template("index.html")
-
 # Route for table of hotels, prices, etc.
 @app.route("/table1")
 def table1():
-    return render_template("table.html")
+    return render_template("hotel_table.html")
 
 # Route for barcharts
 @app.route("/barchart")
@@ -48,7 +43,7 @@ def barchart():
 # Route for bubblecharts
 @app.route("/bubblechart")
 def bubblechart():
-    return render_template("bubblechart.html")
+    return render_template("bubble_chart.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
