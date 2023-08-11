@@ -40,3 +40,9 @@ background-color: #f2f2f2;
 #citySelect {
 width: 100%;
 }
+
+
+.custom-bg {
+  background-color: #71baeb; /* Change this to the desired background color */
+}
+
