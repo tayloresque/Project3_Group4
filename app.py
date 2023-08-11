@@ -22,13 +22,18 @@ def load_data_to_mongodb():
 if collection.count_documents({}) == 0:
     load_data_to_mongodb()
 
+
 @app.route("/")
 def home():
-    return render_template('hotel_table.html')
+    return render_template('README.html')  # Render the README page
+
+@app.route("/table")
+def table():
+    return render_template('hotel_table.html')  # Render the hotel table page
 
 @app.route("/chart")
 def chart():
-    return render_template('bubble_chart.html')
+    return render_template('bubble_chart.html')  # Render the bubble chart page
 
 @app.route("/getjson")
 def jsons():
@@ -36,6 +41,3 @@ def jsons():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-    
