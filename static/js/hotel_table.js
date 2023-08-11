@@ -113,6 +113,7 @@ function initPriceChart(cityData) {
   }
 
   function initBar(cityData) {
+    
     // Implement your existing updateBar code here
     let ratingBuckets = {};
     let ratingCounts = {};
